@@ -1,0 +1,39 @@
+{% extends 'Base_form.html' %}
+{% block content %}
+        {% load static %}
+        <div id="container2" class="container">
+
+          <div class="row">
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Captura de Frames</h5>
+                    <p class="card-text">Aqui se van a capturar frames asociados a una palabra para su posterior entrenamiento</p>
+                    <a href="{% url 'core:entrenamiento' %}" class="btn btn-primary">Ir</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Obtencion de Keypoints</h5>
+                    <p class="card-text">En este apartado se realizara la primera parte del entrenamiento la cual consiste en obtener los puntos claves de los frames capturados</p>
+                    <a href="{% url 'core:obtencion_puntos_clave' %}" class="btn btn-primary">Ir</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Entrenar Modelo</h5>
+                      <p class="card-text">En base a los keypoints obtenidos se entrenara un modelo de inteligencia artificial el cual ayudara a realizar la traduccion de señas</p>
+                      <a href="{% url 'core:Entrenamiento_modelo' %}" class="btn btn-primary">Ir</a>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        
+        
+{% endblock %}

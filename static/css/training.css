@@ -1,0 +1,88 @@
+#palabras_entrenadas {
+    position: relative; /* Permite que los elementos dentro usen posición absoluta relativa a este contenedor */
+}
+
+#entrenadas-list {
+    display: none; /* Oculta la lista por defecto */
+    position: absolute; /* Posiciona la lista de manera absoluta */
+    top: 100%; /* Aparece justo debajo del encabezado */
+    left: 0; /* Alineada al lado izquierdo del contenedor */
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
+    background-color: white; /* Fondo blanco para diferenciarlo */
+    border: 1px solid #ddd; /* Añade un borde para visibilidad */
+    width: 100%; /* Hace que tenga el mismo ancho que el contenedor */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Añade sombra */
+}
+
+.card-header {
+    cursor: pointer; /* Cambia el cursor para indicar que es interactivo */
+    background-color: #f8f9fa;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+    z-index: 1001; /* Asegura que el encabezado esté encima de la lista */
+}
+
+#navigation-buttons {
+    position: relative;
+    width: 100%; /* Abarca todo el ancho de la pantalla */
+    margin-top: 20px; /* Espacio adicional entre el contenedor y el #container2 */
+}
+
+#btn-left {
+    position: absolute;
+    left: 0; /* Coloca el botón en la esquina izquierda */
+    margin-left: 10px; /* Espacio opcional desde el borde izquierdo */
+}
+
+#btn-right {
+    position: absolute;
+    right: 0; /* Coloca el botón en la esquina derecha */
+    margin-right: 10px; /* Espacio opcional desde el borde derecho */
+}
+
+#loading-screen{
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.8); 
+    z-index: 9999; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    color: white; 
+    font-size: 24px; 
+    font-family: Arial, sans-serif;
+    pointer-events: auto; /* Bloquea las interacciones */
+    cursor: wait; /* Cambia el cursor para indicar que está ocupado */
+}
+
+.spinner{
+    border: 8px solid rgba(255, 255, 255, 0.2); 
+    border-top: 8px solid white; 
+    border-radius: 50%; 
+    width: 50px; 
+    height: 50px; 
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#progress{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente moderna y limpia */
+    font-size: 2rem; /* Tamaño de fuente adecuado */
+    font-weight: 500; /* Grosor medio para mejor legibilidad */
+    text-align: center;
+    color: #333; /* Color de texto oscuro para contraste */
+    border-radius: 8px; /* Bordes redondeados */
+    margin: 0 auto; /* Centrado horizontal */
+}

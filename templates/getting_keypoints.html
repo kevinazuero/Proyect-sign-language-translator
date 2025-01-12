@@ -1,0 +1,55 @@
+{% extends 'Base_form.html' %}
+{% block content %}
+        {% load static %}
+        <div id="container2" class="container"> 
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Palabra</th>
+                    <th scope="col">Ejemplos capturados</th>
+                    <th scope="col">Estado Keypoints</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in info %}
+                    <tr>
+                        <td>{{ item.palabra }}</td>
+                        <td>{{ item.cantidad }}</td>
+                        <td>{{ item.estado }}</td>
+                        <td>
+                            {% if item.estado == 'Sin obtener' %}
+                            <form method="POST" action="{% url 'core:eliminar_palabra' item.palabra %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="botones">
+                <button id="get_keypoint" >Obtener Keypoints</button>
+            </div>
+        </div>
+        <div id="navigation-buttons">
+            <a id="btn-left" class="btn btn-dark" href="{% url 'core:entrenamiento' %}" role="button"> 
+                <i class="bi bi-arrow-left"></i> Capturar Frames  
+            </a>
+            <a id="btn-right" class="btn btn-dark" href="{% url 'core:Entrenamiento_modelo' %}" role="button"> 
+                Entrenar modelo <i class="bi bi-arrow-right"></i> 
+            </a>
+        </div>
+
+        <div id="loading-screen" style= 'display: none;'>
+            <div>
+               <p>Obteniendo keypoints, por favor espera...</p>
+               <div class="spinner"></div>
+            </div>
+         </div>
+
+        <script src="/static/js/fetch.js"></script>
+        <script src="/static/js/getting_keypoints.js"></script>
+        
+{% endblock %}

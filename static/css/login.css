@@ -1,0 +1,154 @@
+/* general */
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* diseño principal */
+
+body{
+    background-color: #FCFCFC;
+}
+
+/* diseño de la nav */
+
+.Menu-options{
+    background-color: #45474A;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 4%;
+}
+
+/* edicion a los enlaces  */
+
+.Menu-options a{
+    text-decoration: none;
+}
+
+/* botones del nav */
+
+.link-create{
+    font-size: 18px;
+    margin-right: 2%;
+    color: white;
+    transition: 0.5s;
+    border-radius: 3px;
+    padding: 3px;
+    outline: none;
+
+}
+/* botones del nav click function*/
+.link-create:hover{
+    color: black;
+    background-color: #fcf9ff;
+    padding: 3px;
+    border-radius: 3px;
+}
+
+
+/* el cuadro donde esta la info*/
+
+#container1{
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px); 
+    border-radius: 10px;
+    padding: 20px; 
+    box-shadow: 1px 2px 1px 1px;
+    max-width: 800px;
+    margin: 0 auto; 
+    padding: 50px; 
+}
+
+h2{
+    font-family: oblique bold 120% cursive;
+}
+
+/*formulario de login, register*/
+form {
+    width: 100%; 
+}
+
+/*formulario de  register*/
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/*input[type="email"],
+input[type="text"],
+input[type="password"]---> eliminado*/
+input[type="email"],
+input[type="text"],
+input[type="password"],input{
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px; 
+}
+
+ /*botones general no aplica para botones con bootstrap*/
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/*boton click function*/
+button:hover {
+    background-color: #0056b3;
+}
+
+/*pantallas responsivas*/
+@media screen and (max-width: 788px) {
+
+    .container{
+        width: 600px;
+    }
+    
+}
+
+@media screen and (max-width: 578px) {
+    .container{
+        flex-wrap: wrap;
+        margin-top: 15%;
+        flex-wrap: wrap;
+    }
+    .container{
+        width: 300px;
+    }
+    
+}
+
+/*.envio {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+} -----> eliminado*/
+
+/*.envio:hover {
+    background-color: #0056b3; ----eliminado>
+}*/
+
+
+
+

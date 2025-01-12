@@ -1,0 +1,24 @@
+{% extends 'Base_form.html' %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="header text-center">
+            <h3>{{description}}</h3>
+        </div>
+        <div class="body text-center mt-4">
+            <h2>Una vez eliminado no hay marcha atrás.</h2>
+        </div>
+        <div class="footer text-center mt-4">
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="botones2">
+                <button class="" id="clear" type="submit">
+                    <i class="bi bi-x-circle-fill"></i> Eliminar
+                </button>
+                <a class="" id="noclear" href="{{back_url}}">
+                    <i class="bi bi-arrow-left-square-fill"></i> Cancelar
+                </a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'Base_form.html' %}
+{% block content %}
+        {% load static %}
+        <div id="container2" class="container">
+            <div class="container-capture">
+                <img id="video" width="640" height="480" autoplay></img>
+            </div>
+            <div class="botones">
+            <button id="start" onclick="startVideo()">Iniciar</button>
+            <button id="boton1" onclick="stopVideo()" style="display: none;" class="envio" type="submit">Detener</button>
+            <button id="clean" >Limpiar</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="email">Texto Traducido:</label>
+                    <div class="cuadro" style="position: relative;">
+                        <input id="cuadro_texto" name="traducido" placeholder="El Texto se mostrara aqui" required>
+                        <a id="volumeButton" ><i class="bi bi-volume-up-fill"></i></a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <script src="/static/js/fetch.js"></script>
+        <script src="/static/js/captura.js"></script>
+        <script src="/static/js/save_word.js"></script>
+        <script>
+            document.getElementById('clean').addEventListener('click', function() {
+                document.getElementById('cuadro_texto').value = '';
+            });
+        </script>
+        <script src="/static/js/text_to_speech.js"></script>
+{% endblock %}

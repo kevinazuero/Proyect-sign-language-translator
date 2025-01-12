@@ -1,0 +1,50 @@
+{% extends 'Base_form.html' %}
+{% block content %}
+        {% load static %}
+
+        <div id="palabras_entrenadas">
+            <div class="card" style="width: 18rem;">
+                <div class="card-header" onclick="toggleEntrenadas()">
+                    Palabras Entrenadas
+                </div>
+                <ul class="list-group list-group-flush" id="entrenadas-list">
+                    {% for action in actions %}
+                    <li class="list-group-item">{{ action }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div id="progress"></div>
+        <div id="container2" class="container">
+            <div class="container-capture">
+                <img id="video" width="" height="" autoplay></img>
+            </div>
+
+            <form>
+                <div class="form-group" id= "temporal_content">
+                    <label for="email">Ingrese aqui la Nueva Palabra:</label>
+                        <input id="Palabra" name="" placeholder="porfavor Ingrese aqui la Palabra" required>
+                </div>
+            </form>
+
+            <div class="botones">
+                <button id="start_training" >Empezar Entrenamiento</button>
+                <button id="stop_training"  onclick="stopVideo()" style="display: none;">Detener Entrenamiento</button>
+            </div>
+
+        </div>
+
+        <div id="navigation-buttons">
+            <a id="btn-left" class="btn btn-dark" href="{% url 'core:Entrenamiento_modelo' %}" role="button"> 
+                <i class="bi bi-arrow-left"></i> Entrenar modelo  
+            </a>
+            <a id="btn-right" class="btn btn-dark" href="{% url 'core:obtencion_puntos_clave' %}" role="button"> 
+                Obtener Keypoints <i class="bi bi-arrow-right"></i> 
+            </a>
+        </div>
+
+        <script src="/static/js/fetch.js"></script>
+        <script src="/static/js/send_word.js"></script>
+        <script src="/static/js/toggleEntrenadas.js"></script>
+        
+{% endblock %}

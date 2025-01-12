@@ -1,0 +1,96 @@
+/*----------------------------------------diseño de historial-------------------------------------------*/
+
+#clear{
+    margin-top: 10px;
+    margin-right: 10px;
+    display: inline-block;
+    width: 50%;
+    padding: 10px 20px;
+    background-color: red; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    text-decoration: none; /* Quita el subrayado del enlace */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+    font-size: 16px; /* Tamaño del texto */    
+}
+
+#boton3,#boton4,#noclear{
+        margin-top: 10px;
+        margin-right: 10px;
+        display: inline-block;
+        width: 50%;
+        padding: 10px 20px;
+        background-color: #007bff; /* Color de fondo del botón */
+        color: #fff; /* Color del texto del botón */
+        text-decoration: none; /* Quita el subrayado del enlace */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+        font-size: 16px; /* Tamaño del texto */
+}
+
+#boton3:hover,#boton4:hover {
+        background-color: #0056b3; /* Cambia el color de fondo del botón al pasar el mouse */
+}
+
+.botones2 {
+    display: flex;
+    justify-content: space-between; /* Esto distribuirá los botones horizontalmente */
+    margin-top: 20px
+}
+
+
+#container3 {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 1px 2px 1px 1px;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+#botondelete{
+    margin-left: 10px;
+}
+
+.timestamp {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-top: 5px;
+    margin-left: auto;
+}
+.word-item {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.word-item span {
+    font-weight: bold;
+}
+
+.word-item .count {
+    color: white;
+}
+/* Estilos para el campo de búsqueda */
+#searchInput {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}

@@ -1,0 +1,17 @@
+{% extends "Base_form.html" %}
+
+{% block Formulario_content %}
+{% load crispy_forms_tags %}
+
+<div id="container1" class="container">
+  <p>{{error}}</p>
+  <h2>Formulario de inicio de sesión</h2>
+  <br />
+  
+  <form method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button  type="submit" class="btn btn-danger">iniciar sesion</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'Base_form.html' %}
+    {% load static %}
+{% block content %}
+    <div id='container1' class="container">
+        <h2>Editar Usuario</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="profile-picture" style="margin-bottom: 20px; margin-top: 20px; text-align: center;">
+                <img src="{{ user.get_image_url }}" alt="Imagen de perfil" id="imgperfil">
+        </div>
+        <div>
+            <label for="id_image">Imagen:</label>
+            <input type="file" id="id_image" name="image" value="" onchange="temporalimg(event)">
+        </div>
+        <div>
+            <label for="id_first_name">Nombre:</label>
+            <input type="text" id="id_first_name" name="first_name" value="{{ user.first_name }}">
+        </div>
+        <div>
+            <label for="id_last_name">Apellido:</label>
+            <input type="text" id="id_last_name" name="last_name" value="{{ user.last_name }}">
+        </div>
+        <div>
+            <label for="id_email">Email:</label>
+            <input type="email" id="id_email" name="email" value="{{ user.email }}">
+        </div>
+        <div>
+            <label for="id_current_password">Contraseña Actual:</label>
+            <input type="password" id="id_current_password" name="current_password">
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color: red;">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+            <label for="id_new_password">Nueva Contraseña:</label>
+            <input type="password" id="id_new_password" name="new_password">
+        </div>
+        <div>
+            <button type="submit">Guardar Cambios</button>
+        </div>
+    </form>
+    </div>
+    <script src="/static/js/imgtemporal.js"></script>
+ {% endblock %}

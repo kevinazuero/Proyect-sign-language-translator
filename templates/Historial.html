@@ -1,0 +1,97 @@
+{% extends 'Base_form.html' %}
+{% block content %}
+    <div id="container3" class="container">
+        <!-- Agregar campo de búsqueda -->
+        <form action="">
+            <div class="input-group">
+                <input type="text" id="searchInput" class="form-control" placeholder="Buscar por palabra" name="palabra" value="{{ request.GET.palabra }}">
+            </div>
+            <div class="botones2">
+            <button id="boton3" class="envio" type="submit">Buscar</button>
+            <a href="{% url 'core:clear_historial' %}" id="boton4" class="envio">Limpiar</a>
+
+            </div>
+        </form>
+    </div>
+
+    <div id="container3" class="container">
+        <ul id="word-list">
+            {% for p in palabras %}
+            <li class="word-item">
+                <span>{{p.word}}</span><span class="timestamp">{{p.date}}</span>
+                <a class="text-dark" href="{% url 'core:historial_delete' p.id %}" id="botondelete" data-bs-toggle="tooltip" data-bs-title="Eliminar palabra"><i class="bi bi-trash-fill"></i></a>
+            </li>
+            {% endfor%} 
+        </ul>
+    </div>
+
+    {% if is_paginated %}
+       <div class="card-footer">
+         <nav aria-label="Demo of disable class">
+            <ul class="pagination justify-content-center flex-wrap">
+               {% if page_obj.has_previous %}
+                  <li class="page-item">
+                     <a
+                        href="?page={{ page_obj.previous_page_number }}{{ to_paginate_query }}"
+                        class="page-link text-primary fw-bolder"
+                     >
+                        &laquo; Atrás
+                     </a>
+                  </li>
+
+                  <li class="page-item">
+                     <a href="?page=1{{ to_paginate_query }}" class="page-link text-primary fw-bolder">Inicio</a>
+                  </li>
+               {% else %}
+                  <li class="page-item disabled" style="pointer-events:none; line-height: 1.5">
+                     <a class="page-link bg-secondary bg-opacity-10">&laquo; Atrás</a>
+                  </li>
+                  <li class="page-item disabled" style="pointer-events:none">
+                     <a href="#" class="page-link bg-secondary bg-opacity-10">Inicio</a>
+                  </li>
+               {% endif %}
+
+               {% for index_paginate in paginator.page_range %}
+                  {% if index_paginate <= page_obj.number|add:8 and index_paginate >= page_obj.number|add:-8 %}
+                     {% if page_obj.number == index_paginate %}
+                        <li class="page-item active" style="pointer-events:none">
+                           <a href="#" class="page-link text-dark fw-bolder">{{ forloop.counter }}</a>
+                        </li>
+                     {% else %}
+                        <li class="page-item">
+                           <a href="?page={{ forloop.counter }}{{ to_paginate_query }}"
+                              class="page-link text-dark-opacity-5">{{ forloop.counter }}</a>
+                        </li>
+                     {% endif %}
+                  {% endif %}
+               {% endfor %}
+
+               {% if page_obj.has_next %}
+                  <li class="page-item">
+                     <a
+                        href="?page={{ page_obj.paginator.num_pages }}{{ to_paginate_query }}"
+                        class="page-link text-primary"
+                     >
+                        Final {{ paginator.page_range.stop|add:-1 }}
+                     </a>
+                  </li>
+
+                  <li class="page-item">
+                     <a href="?page={{ page_obj.next_page_number }}{{ to_paginate_query }}"
+                        class="page-link text-primary">Siguiente &raquo;</a>
+                  </li>
+               {% else %}
+                  <li class="page-item disabled text-primary" style="pointer-events:none">
+                     <a href="#" class="page-link bg-secondary bg-opacity-10 text-primary">Final</a>
+                  </li>
+                  <li class="page-item disabled" style="pointer-events:none">
+                     <a class="page-link bg-secondary bg-opacity-10 text-primary">Siguiente &raquo;</a>
+                  </li>
+               {% endif %}
+            </ul>
+         </nav>
+       </div>
+      {% endif %}   
+ {% endblock %}
+
+

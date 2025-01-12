@@ -1,0 +1,36 @@
+{% extends "Base_form.html" %}
+
+{% block Formulario_content %}
+{% load crispy_forms_tags %}
+    <div id="container1" class="container">
+        {{error}}
+        <h2>Creacion de cuenta</h2> 
+        <form method="post" action="{% url 'core:registrar' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="email">Nombres:</label>
+                <input type="text" id="nombres" name="nombres" placeholder="Ingrese sus nombres" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Apellidos:</label>
+                <input type="text" id="apellidos" name="apellidos" placeholder="Ingrese sus apellidos" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" placeholder="Ingrese su correo electrónico"  required>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password1" placeholder="Ingrese su contraseña" pattern="(?=.*[a-zA-Z])(?=.*\d).{8,}" title="La contraseña debe tener al menos 8 caracteres, incluir al menos una letra y al menos un número" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Verificar contraseña:</label>
+                <input type="password" id="password2" name="password2" placeholder="Vuelva a ingresar su contraseña" pattern="(?=.*[a-zA-Z])(?=.*\d).{8,}" title="La contraseña debe tener al menos 8 caracteres, incluir al menos una letra y al menos un número" required>
+            </div>
+            
+            <button class="envio" type="submit">Registrar</button>
+        </form>
+        
+    </div>
+    
+{% endblock %}
