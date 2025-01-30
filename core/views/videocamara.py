@@ -8,10 +8,11 @@ from mediapipe.python.solutions.holistic import Holistic
 from keras.models import load_model
 from core.utils.text_to_speech import text_to_speech
 from core.utils.helpers import draw_keypoints, extract_keypoints, format_sentences, get_actions, mediapipe_detection, there_hand
-from core.utils.constants import DATA_PATH, FONT, FONT_POS, FONT_SIZE, MAX_LENGTH_FRAMES, MIN_LENGTH_FRAMES, MODEL_NAME, MODELS_PATH
+from core.utils.constants import DATA_PATH, MAX_LENGTH_FRAMES, MIN_LENGTH_FRAMES, MODEL_NAME, MODELS_PATH
 
 camera_running = False
 camera = None
+
 model = load_model(os.path.join(MODELS_PATH, MODEL_NAME))
 
 class VideoCamera(object):

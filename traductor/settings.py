@@ -136,8 +136,7 @@ MEDIA_URL = '/media/'
 #install pillow
 #agregue utils para las imagenes
 #se elimino todas las tablas que estaban en la base de datos
-#en las views se cambio de donde viene el User
-
+#en las views se ¡¡ambio de donde viene el User
 
 AUTH_USER_MODEL = "core.User"
 LOGIN_REDIRECT_URL = '/inicio/'

@@ -10,6 +10,8 @@ from django.http import JsonResponse, StreamingHttpResponse, HttpResponse
 from core.training.create_keypoints import create_keypoints
 from core.training.training_model import training_model
 from core.models import Words_state
+from keras import backend as K
+
 
 camera_running = False
 camera = None
@@ -174,7 +176,6 @@ def get_keypoints(request):
 def training_all_model(request):
     root = os.getcwd()
     data_path = os.path.join(root, "data")
-    actions = get_actions(data_path)  # ['word1', 'word2', 'word3']
     save_path = os.path.join(root, "models")
     model_path = os.path.join(save_path, MODEL_NAME)
     
@@ -182,7 +183,7 @@ def training_all_model(request):
     if os.path.exists(model_path):
         print(f"El modelo ya existe en: {model_path}. Eliminando...")
         os.remove(model_path)  # Eliminar archivo
-            
+    K.clear_session()
     training_model(data_path, model_path)
     Words_state.objects.all().update(state=True)  
     return redirect('core:Entrenamiento_modelo')
