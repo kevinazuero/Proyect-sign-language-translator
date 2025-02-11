@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from mediapipe.python.solutions.holistic import Holistic
 from core.utils.helpers import get_keypoints, insert_keypoints_sequence
-from core.utils.constants import DATA_PATH, FRAME_ACTIONS_PATH, ROOT_PATH
+# from core.utils.constants import DATA_PATH, FRAME_ACTIONS_PATH, ROOT_PATH
 
 def create_keypoints(frames_path, save_path):
     '''

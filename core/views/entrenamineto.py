@@ -3,7 +3,7 @@ import os
 import cv2
 import numpy as np
 from mediapipe.python.solutions.holistic import Holistic
-from core.utils.helpers import create_folder, draw_keypoints, mediapipe_detection, save_frames, there_hand,delete_files,get_actions
+from core.utils.helpers import create_folder, draw_keypoints, mediapipe_detection, save_frames, there_hand,delete_files
 from core.utils.constants import FONT, FONT_POS, FONT_SIZE, FRAME_ACTIONS_PATH, ROOT_PATH, DATA_PATH, MODEL_NAME
 from django.shortcuts import redirect, get_object_or_404
 from django.http import JsonResponse, StreamingHttpResponse, HttpResponse

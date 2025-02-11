@@ -45,12 +45,13 @@ class VideoCamera(object):
         else:
             if self.count_frame >= MIN_LENGTH_FRAMES:
                 res = self.model.predict(np.expand_dims(self.kp_sequence[-MAX_LENGTH_FRAMES:], axis=0))[0]
-                if res[np.argmax(res)] > 0.7:
+                if res[np.argmax(res)] > 0.3:
                     sent = self.actions[np.argmax(res)]
                     self.sentence.insert(0, sent)
                     text_to_speech(sent)
                     self.sentence, self.repe_sent = format_sentences(sent, self.sentence, self.repe_sent)
-
+                else:
+                    text_to_speech("no hay coincidencia")
                 self.count_frame = 0
                 self.kp_sequence = []
 
