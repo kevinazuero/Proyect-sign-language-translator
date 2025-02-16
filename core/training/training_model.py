@@ -25,8 +25,7 @@ def training_model(data_path, model_path):
     lr_scheduler = ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=5, min_lr=1e-6)
     early_stopping = EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
     tensorboard = TensorBoard(log_dir='./logs')
-    
-    
+
 
     model.fit(X, y, epochs=NUM_EPOCH, validation_split=validation_split, callbacks=[lr_scheduler, early_stopping, tensorboard])
     model.summary()

@@ -25,7 +25,9 @@
                 </div>
                 <span class="link-create"> {{user.username}}</span>
                 <a href="{% url 'core:inicio' %}" class="link-create">  Traductor </a>
-                <a href="{% url 'core:menu_entrenamiento' %}" class="link-create">  Entrenamiento </a>
+                {% if user.is_superuser %}
+                    <a href="{% url 'core:menu_entrenamiento' %}" class="link-create"> Entrenamiento </a>
+                {% endif %}
                 <a href="{% url 'core:historial' %}" class="link-create">  Mi Historial</a>
                 <a href="{% url 'core:editar' %}" class="link-create">  Editar Perfil</a>
                 <a href="{% url 'core:salir' %}" class="link-create">  Cerrar Sesion</a>

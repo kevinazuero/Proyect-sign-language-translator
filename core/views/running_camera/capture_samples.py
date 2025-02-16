@@ -5,12 +5,7 @@ import numpy as np
 from mediapipe.python.solutions.holistic import Holistic
 from core.utils.helpers import create_folder, draw_keypoints, mediapipe_detection, save_frames, there_hand,delete_files
 from core.utils.constants import FONT, FONT_POS, FONT_SIZE, FRAME_ACTIONS_PATH, ROOT_PATH, DATA_PATH, MODEL_NAME
-from django.shortcuts import redirect, get_object_or_404
-from django.http import JsonResponse, StreamingHttpResponse, HttpResponse
-from core.training.create_keypoints import create_keypoints
-from core.training.training_model import training_model
-from core.models import Words_state
-from keras import backend as K
+from django.http import StreamingHttpResponse, HttpResponse
 
 
 camera_running = False
@@ -121,69 +116,3 @@ def get_progress(request):
         )
     else:
         return HttpResponse(json.dumps({"error": "Camera not started"}), status=404, content_type="application/json")
-    
-def eliminar_palabra(request, palabra):
-    if request.method == "POST":
-        try:
-            words_path = os.path.join(ROOT_PATH, FRAME_ACTIONS_PATH)
-            # Llama a la función para eliminar la carpeta
-            delete_files(palabra,words_path)  # Reemplaza con el nombre de tu función
-            return redirect('core:obtencion_puntos_clave')  # Redirige a la vista principal
-        except Exception as e:
-            return HttpResponse(f"Error al eliminar la palabra: {e}", status=500)
-    else:
-        return HttpResponse("Método no permitido", status=405)
-    
-def eliminar_keypoint(request, palabra):
-    if request.method == "POST":
-        try:
-            words_path = DATA_PATH
-            # Llama a la función para eliminar la carpeta o archivo
-            delete_files(palabra,words_path) 
-            
-            word_state = get_object_or_404(Words_state, word=palabra)
-            
-            # Elimina el objeto de la base de datos
-            word_state.delete()
-            
-            return redirect('core:Entrenamiento_modelo')
-        except Exception as e:
-            return HttpResponse(f"Error al eliminar la palabra: {e}", status=500)
-    else:
-        return HttpResponse("Método no permitido", status=405)
-    
-def get_keypoints(request):
-    words_path = os.path.join(ROOT_PATH, FRAME_ACTIONS_PATH)
-    
-    # Asegurar que el directorio de keypoints exista
-    os.makedirs(DATA_PATH, exist_ok=True)
-    
-    # Generar keypoints solo para palabras nuevas
-    for word_name in os.listdir(words_path):
-        word_path = os.path.join(words_path, word_name)
-        hdf_path = os.path.join(DATA_PATH, f"{word_name}.h5")
-        word_with_h5 = f"{word_name}.h5"
-        
-        if not os.path.exists(hdf_path):
-            print(f'Creando keypoints de "{word_name}"...')
-            create_keypoints(word_path, hdf_path)
-            Words_state.objects.create(word=word_with_h5)
-            print(f"Keypoints creados!")
-        else:
-            print(f'Se omitió "{word_name}" porque los keypoints ya existen.')
-    return JsonResponse({"message": "se han creado los keypoints"})
-
-def training_all_model(request):
-    root = os.getcwd()
-    data_path = os.path.join(root, "data")
-    save_path = os.path.join(root, "models")
-    model_path = os.path.join(save_path, MODEL_NAME)
-    
-    # Verificar si el archivo o directorio del modelo existe
-    if os.path.exists(model_path):
-        print(f"El modelo ya existe en: {model_path}. Eliminando...")
-        os.remove(model_path)  # Eliminar archivo
-    K.clear_session()
-    training_model(data_path, model_path)
-    Words_state.objects.all().update(state=True)  
-    return redirect('core:Entrenamiento_modelo')

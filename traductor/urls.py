@@ -20,12 +20,12 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from core.views import account
+from core.views.account import sign_in
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', account.signin, name='login'),
+    path('', sign_in, name='login'),
     path('core/',include('core.urls',namespace="core") ),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
