@@ -22,15 +22,15 @@ def edit_user(request):
 
         if 'image' in request.FILES:
             user.image = request.FILES['image']
-        user.first_name = request.POST.get('first_name', user.first_name)
-        user.last_name = request.POST.get('last_name', user.last_name)
-        user.email = request.POST.get('email', user.email)
+            user.first_name = request.POST.get('first_name', user.first_name)
+            user.last_name = request.POST.get('last_name', user.last_name)
+            user.email = request.POST.get('email', user.email)
 
         if new_password:
             user.set_password(new_password)
-            update_session_auth_hash(request, user)  # Mantener la sesión después de cambiar la contraseña
+            update_session_auth_hash(request, user)
 
         user.save()
         return redirect('core:editar')
 
-    return render(request, 'editperfil.html', {'user': request.user,})
+    return render(request, 'editperfil.html', {'user': request.user, })
