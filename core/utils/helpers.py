@@ -164,33 +164,19 @@ def count_samples(word_name):
 
 def delete_files(word_name, words_path):
     word_path = os.path.join(words_path, word_name)
-
-    # Verifica si la carpeta o archivo existe
     if os.path.exists(word_path):
         try:
-            # Cambiar permisos a los archivos y carpetas dentro de 'word_path'
-            if os.path.isdir(word_path):
-                for root_dir, dirs, files in os.walk(word_path, topdown=False):
-                    for name in files:
-                        os.chmod(os.path.join(root_dir, name), 0o777)  # Permisos de escritura
-                    for name in dirs:
-                        os.chmod(os.path.join(root_dir, name), 0o777)  # Permisos de escritura
-
-            # Ahora intentar eliminar la carpeta o archivo
             if os.path.isfile(word_path):
                 os.remove(word_path)
                 print(f"El archivo '{word_path}' ha sido eliminado.")
             else:
-                for root, dirs, files in os.walk(word_path, topdown=False):
-                    for file in files:
-                        file_path = os.path.join(root, file)
-                        os.remove(file_path)  # Elimina archivos
-                        print(f"Archivo eliminado: {file_path}")
-                    for dir in dirs:
-                        dir_path = os.path.join(root, dir)
-                        os.rmdir(dir_path)  # Elimina carpetas vacías
-                        print(f"Carpeta vacía eliminada: {dir_path}")
-                os.rmdir(word_path)  # Elimina la carpeta principal
+                for root_dir, dirs, files in os.walk(word_path, topdown=False):
+                    for name in files:
+                        os.chmod(os.path.join(root_dir, name), 0o777)
+                    for name in dirs:
+                        os.chmod(os.path.join(root_dir, name), 0o777)
+                os.chmod(word_path, 0o777)
+                shutil.rmtree(word_path)
                 print(f"La carpeta '{word_path}' ha sido eliminada exitosamente.")
         except Exception as e:
             print(f"Error al eliminar '{word_path}': {e}")

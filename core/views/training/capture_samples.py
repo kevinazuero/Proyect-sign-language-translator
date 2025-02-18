@@ -17,11 +17,11 @@ def training_view(request):
         'actions':actions,
     })
 
-def delete_word(request, word):
+def delete_word(request, palabra):
     if request.method == "POST":
         try:
             words_path = os.path.join(ROOT_PATH, FRAME_ACTIONS_PATH)
-            delete_files(word,words_path)
+            delete_files(palabra,words_path)
             return redirect('core:obtencion_puntos_clave')
         except Exception as e:
             return HttpResponse(f"Error al eliminar la palabra: {e}", status=500)
