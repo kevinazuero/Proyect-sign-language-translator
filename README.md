@@ -13,7 +13,7 @@ Este proyecto consiste en una página web sencilla que permite **entrenar y util
 1. Asegúrate de tener Python instalado.
 2. Clona el repositorio:
 
-3. Instala los requisitos (si aplica):
+3. Instala los requisitos :
 
 ```
 pip install -r requirements.txt
