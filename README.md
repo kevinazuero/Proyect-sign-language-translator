@@ -32,3 +32,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 Abre tu navegador en http://localhost:8000/.
+
+**Nota**
+Si estas interesado/a solo en la logica de la creacion y prueba del modelo accede a:
+core --> training/utils
